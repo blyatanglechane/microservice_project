@@ -1,5 +1,6 @@
 namespace microservice_project
 {
+    // просто создание репозитория
     internal static class Program
     {
         /// <summary>
