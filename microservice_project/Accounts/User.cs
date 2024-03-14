@@ -10,11 +10,23 @@ namespace microservice_project.Accounts
     // Класс реализовывает интерфейс IAccounts
     class User : IAccounts
     {
-        string Name; string Surname; string Patronymic; DateTime DateOfBirth; string CardNumber; string address; string pick_upPoint;
-        DateTime AccountCreationDate;
+        public string Name;
+        public string Surname;
+        public string Patronymic;
+        public DateTime DateOfBirth; 
+        public string CardNumber; 
+        public string address; 
+        public string pick_upPoint;
+        public DateTime AccountCreationDate; 
+        string _login; 
+        string _password;
+
+        // Публичные свойства для логина и пароля
+        public string Login { get { return _login; } }
+        public string Password { get { return _password; } }
 
         // Конструктор класса
-        public User(string Name, string Surname, string Patronymic, DateTime DateOfBirth, string CardNumber, string address, string pick_upPoint, DateTime AccountCreationDate) 
+        public User(string Name, string Surname, string Patronymic, DateTime DateOfBirth, string CardNumber, string address, string pick_upPoint, DateTime AccountCreationDate, string login, string password) 
         {
             this.Name = Name;
             this.Surname = Surname;
@@ -24,6 +36,8 @@ namespace microservice_project.Accounts
             this.address = address;
             this.pick_upPoint = pick_upPoint;
             this.AccountCreationDate = AccountCreationDate;
+            _login = login;
+            _password = password;
         }
 
         // Информация о клиенте
