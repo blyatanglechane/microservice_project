@@ -63,7 +63,7 @@ namespace microservice_project
             //        Console.WriteLine("Аутентификация прошла успешно");
             //        Console.WriteLine("Выберите операцию, которую хотите выполнить:\n" +
             //            "1. Информация об учётной записи.\n" +
-            //            "2. Оставить заявку на заказ.\n" +
+            //            "2. Оставить заяwefsfвку на заказ.\n" +
             //            "3. Выйти из учётной записи.\n");
             //        int InputUser;
             //        while (int.TryParse(Console.ReadLine(), out InputUser) && InputUser != 3)
