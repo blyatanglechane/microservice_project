@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 
 namespace microservice_project.Accounts
 {
+    // Класс для работы с БД
     class MSDatabaseUser
     {
         SqlConnection sqlConnection = new SqlConnection(@"Data Source=.; Initial Catalog=ClientUserDatabase; Integrated Security=True");/*WIN-ESTKKU0VUON\SQLEXPRESS*/

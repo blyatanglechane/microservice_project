@@ -62,19 +62,22 @@ namespace microservice_project
         {
             // Сохраняем введённые данные логина и пароля в переменные
             var loginUser = LoginInput.Text;
-            var passwordUser = passwordInput;
+            var passwordUser = passwordInput.Text;
 
             // Пишем строки нужные для работы с БД
             SqlDataAdapter adapter = new SqlDataAdapter();
             DataTable table = new DataTable();
 
             // Строка для сохранения SQL запроса. Ищем пользователя с введённым логином и паролем
-            string querystring = $"SELECT * FROM UserTable WHERE _login = {loginUser} AND _password = {passwordUser};";
+            string querystring = $"SELECT * FROM UserTable WHERE _login = '{loginUser}' AND _password = '{passwordUser}'";
 
             // Команда для запуска запроса, передаём строку запроса и строку подключения
             SqlCommand sqlCommand = new SqlCommand(querystring, dataBase.getConnection());
 
+            // Эта строка устанавливает объект команды в качестве команды выборки (select command) для объекта адаптера данных (data adapter)
             adapter.SelectCommand = sqlCommand;
+
+            // Эта строка выполняет команду выборки, представленную объектом адаптера данных, и заполняет результаты выполнения запроса в объект DataTable
             adapter.Fill(table);
 
             // Если результат запроса выдал нам одну строку, значит мы успешно вошли, в ином
@@ -92,6 +95,7 @@ namespace microservice_project
                 this.Show();
 
             }
+            else MessageBox.Show("Такого аккаунта не существует!", "Аккаунта не существует!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }
 }
