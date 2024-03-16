@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrayNotify;
+using System.Data.SqlClient;
 
 namespace microservice_project
 {
@@ -55,6 +56,42 @@ namespace microservice_project
         private void LoginInput_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void ButtonLogin_Click(object sender, EventArgs e)
+        {
+            // Сохраняем введённые данные логина и пароля в переменные
+            var loginUser = LoginInput.Text;
+            var passwordUser = passwordInput;
+
+            // Пишем строки нужные для работы с БД
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            DataTable table = new DataTable();
+
+            // Строка для сохранения SQL запроса. Ищем пользователя с введённым логином и паролем
+            string querystring = $"SELECT * FROM UserTable WHERE _login = {loginUser} AND _password = {passwordUser};";
+
+            // Команда для запуска запроса, передаём строку запроса и строку подключения
+            SqlCommand sqlCommand = new SqlCommand(querystring, dataBase.getConnection());
+
+            adapter.SelectCommand = sqlCommand;
+            adapter.Fill(table);
+
+            // Если результат запроса выдал нам одну строку, значит мы успешно вошли, в ином
+            // случае мы выводим ошибку
+            if (table.Rows.Count == 1) 
+            {
+                MessageBox.Show("Вы успешно вошли!", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // После успешной авторизации мы на время прячем окно с интернет магазином
+                Form OnlineStore = new Form();
+                this.Hide();
+
+                // Показываем окно, что мы успешно вошли и запускаем вторую форму с интернет магазином
+                OnlineStore.ShowDialog();
+                this.Show();
+
+            }
         }
     }
 }
