@@ -68,6 +68,7 @@
             ButtonLogin.TabIndex = 5;
             ButtonLogin.Text = "Войти";
             ButtonLogin.UseVisualStyleBackColor = true;
+            ButtonLogin.Click += ButtonLogin_Click;
             // 
             // passwordInput
             // 
